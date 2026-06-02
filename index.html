@@ -397,7 +397,7 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line);padding:54px
         <button id="demo-ar" onclick="setDemo('ar')" data-i="demo_btn_ar">Arabic demo</button>
       </div>
       <div class="video-frame">
-        <div class="ar" id="demo-ar" data-yt="DA_k7KAkTTM" onclick="playVid(this)"><div class="facade"><img class="thumb" src="https://img.youtube.com/vi/DA_k7KAkTTM/maxresdefault.jpg" alt="" loading="lazy"><div class="play"><svg viewBox="0 0 24 24"><path d="M7 5v14l12-7z"/></svg></div><div class="vlabel" data-i="demo_vlabel">Play the demo call</div></div></div>
+        <div class="ar" id="demo-box" data-yt="DA_k7KAkTTM" onclick="playVid(this)"><div class="facade"><img class="thumb" src="https://img.youtube.com/vi/DA_k7KAkTTM/maxresdefault.jpg" alt="" loading="lazy"><div class="play"><svg viewBox="0 0 24 24"><path d="M7 5v14l12-7z"/></svg></div><div class="vlabel" data-i="demo_vlabel">Play the demo call</div></div></div>
       </div>
     </div>
   </div>
@@ -728,7 +728,7 @@ function playVid(box){
 /* demo switch: reset the facade to the chosen language video */
 const DEMO_IDS={en:"DA_k7KAkTTM",ar:"63pIaTAxS9Y"};
 function setDemo(l){
-  const box=document.getElementById('demo-ar');
+  const box=document.getElementById('demo-box');
   box.setAttribute('data-yt',DEMO_IDS[l]);
   const i=(typeof LANG!=='undefined'&&LANG==='ar')?1:0;
   const lbl=(I18N.demo_vlabel)?I18N.demo_vlabel[i]:'Play the demo call';
