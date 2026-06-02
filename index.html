@@ -110,10 +110,11 @@ h1.hh .grad{background:linear-gradient(120deg,#fff 10%,var(--blue-bright) 55%,va
 .video-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 .video-frame .ar{position:relative;width:100%;aspect-ratio:16/9;background:#06080f;cursor:pointer}
 .facade{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:4;
-  background:radial-gradient(circle at 50% 45%,rgba(46,155,255,.14),transparent 60%),#06080f;overflow:hidden}
-.facade::after{content:"";position:absolute;inset:0;
-  background-image:linear-gradient(var(--line2) 1px,transparent 1px),linear-gradient(90deg,var(--line2) 1px,transparent 1px);
-  background-size:40px 40px;opacity:.5}
+  background:#06080f;overflow:hidden}
+.facade .thumb{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.facade::after{content:"";position:absolute;inset:0;z-index:1;
+  background:linear-gradient(180deg,rgba(2,4,10,.35) 0%,rgba(2,4,10,.15) 40%,rgba(2,4,10,.75) 100%),
+             radial-gradient(circle at 50% 45%,rgba(46,155,255,.2),transparent 55%)}
 .facade .play{position:relative;z-index:2;width:84px;height:84px;border-radius:50%;
   background:linear-gradient(120deg,var(--blue-bright),var(--blue-core));display:flex;align-items:center;justify-content:center;
   box-shadow:0 16px 50px -8px rgba(46,155,255,.7);transition:transform .25s}
@@ -312,7 +313,7 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line);padding:54px
       <a href="#demo" class="btn btn-ghost" data-i="hero_cta2">Watch how it works</a>
     </div>
     <div class="video-frame reveal in d4">
-      <div class="ar" data-yt="4C0EhSQxTj4" onclick="playVid(this)"><div class="facade"><div class="play"><svg viewBox="0 0 24 24"><path d="M7 5v14l12-7z"/></svg></div><div class="vlabel" data-i="hero_vlabel">Watch the 90-second overview</div></div></div>
+      <div class="ar" data-yt="4C0EhSQxTj4" onclick="playVid(this)"><div class="facade"><img class="thumb" src="https://img.youtube.com/vi/4C0EhSQxTj4/maxresdefault.jpg" alt="" loading="lazy"><div class="play"><svg viewBox="0 0 24 24"><path d="M7 5v14l12-7z"/></svg></div><div class="vlabel" data-i="hero_vlabel">Watch the 90-second overview</div></div></div>
     </div>
   </div>
 </header>
@@ -396,7 +397,7 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line);padding:54px
         <button id="demo-ar" onclick="setDemo('ar')" data-i="demo_btn_ar">Arabic demo</button>
       </div>
       <div class="video-frame">
-        <div class="ar" id="demo-ar" data-yt="DA_k7KAkTTM" onclick="playVid(this)"><div class="facade"><div class="play"><svg viewBox="0 0 24 24"><path d="M7 5v14l12-7z"/></svg></div><div class="vlabel" data-i="demo_vlabel">Play the demo call</div></div></div>
+        <div class="ar" id="demo-ar" data-yt="DA_k7KAkTTM" onclick="playVid(this)"><div class="facade"><img class="thumb" src="https://img.youtube.com/vi/DA_k7KAkTTM/maxresdefault.jpg" alt="" loading="lazy"><div class="play"><svg viewBox="0 0 24 24"><path d="M7 5v14l12-7z"/></svg></div><div class="vlabel" data-i="demo_vlabel">Play the demo call</div></div></div>
       </div>
     </div>
   </div>
@@ -731,7 +732,8 @@ function setDemo(l){
   box.setAttribute('data-yt',DEMO_IDS[l]);
   const i=(typeof LANG!=='undefined'&&LANG==='ar')?1:0;
   const lbl=(I18N.demo_vlabel)?I18N.demo_vlabel[i]:'Play the demo call';
-  box.innerHTML='<div class="facade"><div class="play"><svg viewBox="0 0 24 24"><path d="M7 5v14l12-7z"/></svg></div><div class="vlabel" data-i="demo_vlabel">'+lbl+'</div></div>';
+  const thumb="https://img.youtube.com/vi/"+DEMO_IDS[l]+"/maxresdefault.jpg";
+  box.innerHTML='<div class="facade"><img class="thumb" src="'+thumb+'" alt=""><div class="play"><svg viewBox="0 0 24 24"><path d="M7 5v14l12-7z"/></svg></div><div class="vlabel" data-i="demo_vlabel">'+lbl+'</div></div>';
   document.getElementById('demo-en').classList.toggle('active',l==='en');
   document.getElementById('demo-ar').classList.toggle('active',l==='ar');
 }
